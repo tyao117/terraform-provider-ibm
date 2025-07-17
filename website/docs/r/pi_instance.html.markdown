@@ -10,7 +10,7 @@ description: |-
 
 Create, delete or update a [Power Systems Virtual Server instance](https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server).
 
-## Example usage
+## Example Usage
 
 The following example creates a Power Systems Virtual Server instance.
 
@@ -58,7 +58,7 @@ The `ibm_pi_instance` provides the following [timeouts](https://www.terraform.io
 - **update** - (Default 60 minutes) Used for updating an instance.
 - **delete** - (Default 60 minutes) Used for deleting an instance.
 
-## Argument reference
+## Argument Reference
 
 Review the argument references that you can specify for your resource.
 
@@ -89,8 +89,7 @@ Review the argument references that you can specify for your resource.
         - If using `pi_deployment_type = VMNoStorage` then use the following images for the respective OS you intend to create the instance: `AIX-EMPTY`, `IBMI-EMPTY`, `SLES-EMPTY`, `RHEL-EMPTY`.
 - `pi_instance_name` - (Required, String) The name of the Power Systems Virtual Server instance.
 - `pi_key_pair_name` - (Optional, String) The name of the SSH key that you want to use to access your Power Systems Virtual Server instance. The SSH key must be uploaded to IBM Cloud.
-- `pi_license_repository_capacity` - (Deprecated, Optional, Integer) The VTL license repository capacity TB value. Only use with VTL instances. `pi_memory >= 16 + (2 * pi_license_repository_capacity)`.
-  - **Note**: Provisioning VTL instances is temporarily disabled.
+- `pi_license_repository_capacity` - (Optional, Integer) The VTL license repository capacity TB value. Only use with VTL instances. `pi_memory >= 16 + (2 * pi_license_repository_capacity)`.
 - `pi_memory` - (Optional, Float) The amount of memory that you want to assign to your instance in GB.
   - Required when not creating SAP instances. Conflicts with `pi_sap_profile_id`.
 - `pi_network` - (Required, List of Map) List of one or more networks to attach to the instance.
@@ -118,7 +117,7 @@ Review the argument references that you can specify for your resource.
 - `pi_storage_pool_affinity` - (Optional, Boolean) Indicates if all volumes attached to the server must reside in the same storage pool. The default value is `true`. To attach data volumes from a different storage pool (mixed storage) set to `false` and use `pi_volume_attach` resource. Once set to `false`, cannot be set back to `true` unless all volumes attached reside in the same storage type and pool.
 - `pi_storage_type` - (Optional, String) - Storage type for server deployment; If storage type is not provided the storage type will default to `tier3`. To get a list of available storage types, please use the [ibm_pi_storage_types_capacity](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/pi_storage_types_capacity) data source.
 - `pi_storage_connection` - (Optional, String) - Storage Connectivity Group (SCG) for server deployment. Supported values are `vSCSI`, `maxVolumeSupport`.
-- `pi_sys_type` - (Optional, String) The type of system on which to create the VM (e880/e980/e1080/s922/s1022).
+- `pi_sys_type` - (Optional, String) The type of system on which to create the VM (e880/e980/e1080/e1150/e1180/s922/s1022/s1122).
   - Supported SAP system types are (e880/e980/e1080).
 - `pi_user_data` - (Optional, String) The user data `cloud-init` to pass to the instance during creation. It can be a base64 encoded or an unencoded string. If it is an unencoded string, the provider will encode it before it passing it down.
 - `pi_user_tags` - (Optional, List) The user tags attached to this resource.
@@ -133,7 +132,7 @@ Review the argument references that you can specify for your resource.
       ~> **Note** When set to "auto-assign", changes to `serial` outside of terraform will not be detected. In addition, if a new generated virtual serial number is needed, the old serial must be removed before a new one is generated.
 - `pi_volume_ids` - (Optional, List of String) The list of volume IDs that you want to attach to the instance during creation.
 
-## Attribute reference
+## Attribute Reference
 
 In addition to all argument reference list, you can access the following attribute reference after your resource is created.
 
